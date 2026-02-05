@@ -73,7 +73,7 @@ document.getElementById('formulario').addEventListener('submit',function(e){
  fetch('https://discord.com/api/webhooks/1469093596912422945/jUYq1O5cFXRPFXcW6SkgiGz9oI4c10PSZA6ErvN4s2b_qkkrBD833o2qhzOrxOVdNuD6',{
  method:'POST',
  headers:{'Content-Type':'application/json'},
- body:JSON.stringify({content:`📢 **Nuevo comercio interesado**\n🏪 **Comercio:** ${comercio}\n📍 **Dirección:** ${direccion}\n📞 **Teléfono:** ${telefono}\n📅 **Visita:** ${fecha}`})
+ body:JSON.stringify({content:`📢 **Nuevo comercio interesado**\n🏪 **Comercio:** ${comercio}\n🔠 **Rubro:** ${rubro}\n📍 **Dirección:** ${direccion}\n📞 **Teléfono:** ${telefono}\n📅 **Visita:** ${fecha}`})
  });
 });
 </script>
