@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CredExpert | Financiación para comercios</title>
+<style>
+:root{--verde:#2fa86a;--verde-oscuro:#1f7a4f;--gris:#ecefef;--gris-texto:#5f6a68;--negro:#1f1f1f}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#e9eded,#f4f6f5);color:var(--negro)}
+.hero{background:transparent;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{width:100%;max-width:460px;background:#fdfefe;border-radius:18px;box-shadow:0 12px 35px rgba(0,0,0,.10);padding:32px}
+.logo{display:flex;justify-content:center;margin-bottom:14px}
+.logo img{width:72px;height:72px}
+h1{text-align:center;font-size:26px;margin:10px 0 6px 0}
+.sub{text-align:center;font-size:15px;color:var(--gris-texto);margin-bottom:26px}
+.beneficios{display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+.beneficio{font-size:14px;color:#2b2b2b}
+.beneficio span{color:var(--verde);font-weight:600}
+label{font-size:13px;margin-top:14px;display:block}
+input{width:100%;padding:12px;border-radius:12px;border:1px solid #dcdcdc;margin-top:6px;font-size:14px}
+input:focus{outline:none;border-color:var(--verde)}
+button{margin-top:26px;width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#2fa86a,#27925d);color:#fff;font-size:16px;font-weight:600;cursor:pointer}
+button:hover{opacity:.95}
+.footer{text-align:center;font-size:12px;color:#9a9a9a;margin-top:18px}
+</style>
+</head>
+<body>
+<section class="hero">
+<div class="card">
+<div class="logo">
+<img src="file:///C:/Users/licha/OneDrive/Escritorio/credexpert.png" alt="CredExpert">
+</div>
+<h1>CredExpert</h1>
+<p class="sub">Vendé más sin invertir ni asumir riesgos</p>
+<div class="beneficios">
+<div class="beneficio">✔ Cobrás <span>100% en efectivo</span></div>
+<div class="beneficio">✔ Ofrecés <span>cuotas a tus clientes</span></div>
+<div class="beneficio">✔ Activás ventas que <span>antes no existían</span></div>
+</div>
+<form id="formulario">
+<label>Nombre del comercio</label>
+<input type="text" id="comercio" required>
+<label for="rubro">Rubro</label>
+<input type="text" id="rubro" placeholder="Ej: bicicletería, indumentaria, muebleria" required>
+
+<label>Dirección</label>
+<input type="text" id="direccion" required>
+<label>Teléfono del comercio</label>
+<input type="tel" id="telefono" required>
+<label>Día y hora de visita</label>
+<input type="datetime-local" id="fecha" required>
+<button type="submit">Agendar visita</button>
+</form>
+<div class="footer">
+      <strong>Sucursales CredExpert</strong><br>
+  Mar del Plata (Centro) – Independencia #1785 | Tel: 495-9665<br>
+  Mar del Plata (Puerto) – Thomas Edison #501 | Tel: 480-6368<br>
+  Tel: (221) 482-1566 | info@credexpert.com.ar<br><br>
+  © 2020 CredExpert - Todos los derechos reservados
+</div>
+</section>
+<script>
+document.getElementById('formulario').addEventListener('submit',function(e){
+ e.preventDefault();
+ const comercio=document.getElementById('comercio').value;
+ const rubro = document.getElementById("rubro").value;
+ const direccion=document.getElementById('direccion').value;
+ const telefono=document.getElementById('telefono').value;
+ const fecha=document.getElementById('fecha').value;
+ const mensaje=`Nuevo comercio interesado:%0A🏪 Comercio: ${comercio}%0A📍Rubro: ${rubro} Dirección: ${direccion}%0A📞 Teléfono: ${telefono}%0A📅 Visita: ${fecha}`;
+ window.open(`https://wa.me/542236889633?text=${mensaje}`,'_blank');
+ fetch('https://discord.com/api/webhooks/1469093596912422945/jUYq1O5cFXRPFXcW6SkgiGz9oI4c10PSZA6ErvN4s2b_qkkrBD833o2qhzOrxOVdNuD6',{
+ method:'POST',
+ headers:{'Content-Type':'application/json'},
+ body:JSON.stringify({content:`📢 **Nuevo comercio interesado**\n🏪 **Comercio:** ${comercio}\n📍 **Dirección:** ${direccion}\n📞 **Teléfono:** ${telefono}\n📅 **Visita:** ${fecha}`})
+ });
+});
+</script>
+</body>
+</html>
