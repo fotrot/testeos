@@ -9,7 +9,30 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:'Segoe UI',Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#e9eded,#f4f6f5);color:var(--negro)}
 .hero{background:transparent;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.card{width:100%;max-width:460px;background:#fdfefe;border-radius:18px;box-shadow:0 12px 35px rgba(0,0,0,.10);padding:32px}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeScale{
+  from{opacity:0;transform:scale(.95)}
+  to{opacity:1;transform:scale(1)}
+}
+.hidden{opacity:0}
+.animate{animation:fadeUp .6s ease forwards}
+/* ====================== */
+
+.card{
+  width:100%;
+  max-width:460px;
+  background:#fdfefe;
+  border-radius:18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.10);
+  padding:32px;
+  animation:fadeScale .6s ease forwards;
+}
+
 .logo{display:flex;justify-content:center;margin-bottom:14px}
 .logo img{width:72px;height:72px}
 h1{text-align:center;font-size:26px;margin:10px 0 6px 0}
@@ -26,45 +49,65 @@ button:hover{opacity:.95}
 </style>
 </head>
 <body>
+
 <section class="hero">
 <div class="card">
-<div class="logo">
+
+<div class="logo hidden">
 <img src="credexpert.png" alt="CredExpert">
 </div>
-<h1>CredExpert</h1>
-<p class="sub">Vendé más sin invertir ni asumir riesgos</p>
-<div class="beneficios">
-<div class="beneficio">✔ Cobrás <span>100% en efectivo</span></div>
-<div class="beneficio">✔ Ofrecés <span>cuotas a tus clientes</span></div>
-<div class="beneficio">✔ Activás ventas que <span>antes no existían</span></div>
-</div>
-<form id="formulario">
-<label>Nombre del comercio</label>
-<input type="text" id="comercio" required>
-<label for="rubro">Rubro</label>
-<input type="text" id="rubro" placeholder="Ej: bicicletería, indumentaria, muebleria" required>
 
-<label>Dirección</label>
-<input type="text" id="direccion" required>
-<label>Teléfono del comercio</label>
-<input type="tel" id="telefono" required>
-<label>Día y hora de visita</label>
-<input type="datetime-local" id="fecha" required>
-<button type="submit">Agendar visita</button>
+<h1 class="hidden">CredExpert</h1>
+<p class="sub hidden">Vendé más sin invertir ni asumir riesgos</p>
+
+<div class="beneficios hidden">
+  <div class="beneficio">✔ Cobrás <span>100% en efectivo</span></div>
+  <div class="beneficio">✔ Ofrecés <span>cuotas a tus clientes</span></div>
+  <div class="beneficio">✔ Activás ventas que <span>antes no existían</span></div>
+</div>
+
+<form id="formulario" class="hidden">
+  <label>Nombre del comercio</label>
+  <input type="text" id="comercio" required>
+
+  <label for="rubro">Rubro</label>
+  <input type="text" id="rubro" placeholder="Ej: bicicletería, indumentaria, muebleria" required>
+
+  <label>Dirección</label>
+  <input type="text" id="direccion" required>
+
+  <label>Teléfono del comercio</label>
+  <input type="tel" id="telefono" required>
+
+  <label>Día y hora de visita</label>
+  <input type="datetime-local" id="fecha" required>
+
+  <button type="submit">Agendar visita</button>
 </form>
-<div class="footer">
-      <strong>Sucursales CredExpert</strong><br>
+
+<div class="footer hidden">
+  <strong>Sucursales CredExpert</strong><br>
   Mar del Plata (Centro) – Independencia #1785 | Tel: 495-9665<br>
   Mar del Plata (Puerto) – Thomas Edison #501 | Tel: 480-6368<br>
   Tel: (221) 482-1566 | info@credexpert.com.ar<br><br>
   © 2020 CredExpert - Todos los derechos reservados
 </div>
+
+</div>
 </section>
+
 <script>
+const elementos = document.querySelectorAll('.hidden');
+elementos.forEach((el, i) => {
+  setTimeout(() => {
+    el.classList.add('animate');
+  }, 180 * i);
+});
+
 document.getElementById('formulario').addEventListener('submit',function(e){
  e.preventDefault();
  const comercio=document.getElementById('comercio').value;
- const rubro = document.getElementById("rubro").value;
+ const rubro=document.getElementById("rubro").value;
  const direccion=document.getElementById('direccion').value;
  const telefono=document.getElementById('telefono').value;
  const fecha=document.getElementById('fecha').value;
@@ -77,5 +120,6 @@ document.getElementById('formulario').addEventListener('submit',function(e){
  });
 });
 </script>
+
 </body>
 </html>
